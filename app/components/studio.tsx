@@ -174,10 +174,6 @@ export const Studio = ({ name }: { name: string }) => {
                     <td style={cellStyle}>
                       {session.spaceHolder ? (
                         <button
-                          style={{
-                            color:
-                              session.status !== "ongoing" ? "blue" : "black",
-                          }}
                           disabled={session.status == "ongoing"}
                           onClick={() => {
                             setSelectedBooking(session.spaceHolder);
@@ -215,7 +211,7 @@ export const Studio = ({ name }: { name: string }) => {
                         )}
                       {session.dancers.map((booking) => (
                         <button
-                          style={{ marginRight: "5px", color: "blue" }}
+                          style={{ marginRight: "5px" }}
                           key={booking.id}
                           onClick={() => setSelectedBooking(booking)}
                         >
