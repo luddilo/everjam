@@ -2,11 +2,11 @@ export const routes = {
   "/": {
     name: "home",
   },
-  //   "/writing": {
-  //     name: "writing",
-  //   },
-  "/dancing": {
-    name: "dancing",
+    "/writing": {
+      name: "writing",
+    },
+  "/blueprint": {
+    name: "blueprint",
   },
   "/coding": {
     name: "coding",
