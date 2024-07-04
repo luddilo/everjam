@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Booking } from "../types/booking";
+import { Booking } from "../types/types";
 import { Modal } from "./modal";
 import { buttonStyle } from "../style";
 import { formatDate, normalCase } from "../lib/formatting";

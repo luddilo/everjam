@@ -7,7 +7,7 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../lib/firebase";
-import { Booking } from "../types/booking";
+import { Booking } from "../types/types";
 
 // create uuid v4
 const uuidv4 = () => {

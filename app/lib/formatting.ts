@@ -1,3 +1,5 @@
+import { Status } from "../types/types";
+
 export const formatDate = (moment: moment.Moment, long = false) => {
   if (long) return moment.format("dddd HH:mm");
   return moment.format("dd HH:mm");
@@ -11,4 +13,19 @@ export const capitalise = (s: string) => {
 // Make string normal case from camelCase
 export const normalCase = (s: string) => {
   return s.replace(/([A-Z])/g, " $1").toLowerCase();
+};
+
+export const getBackgroundColor = (status: Status) => {
+  switch (status) {
+    case "open":
+      return "white";
+    case "proposed":
+      return "yellow";
+    case "happening":
+      return "green";
+    case "disabled":
+      return "grey";
+    case "ongoing":
+      return "green";
+  }
 };

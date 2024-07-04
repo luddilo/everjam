@@ -2,10 +2,10 @@
 import moment from "moment";
 import { useState } from "react";
 import { useBookings } from "../hooks/bookings";
-import { Booking } from "../types/booking";
+import { Booking, Status } from "../types/types";
 import { EditModal } from "./edit";
 import { SignupModal } from "./signup";
-import { capitalise, formatDate } from "../lib/formatting";
+import { capitalise, formatDate, getBackgroundColor } from "../lib/formatting";
 import { useIsMobile } from "../hooks/useMediaQuery";
 
 const generalSettings = {
@@ -19,7 +19,7 @@ export const Studio = ({ name }: { name: string }) => {
     useState<Pick<Booking, "date" | "type">>();
   const [selectedBooking, setSelectedBooking] = useState<Booking>();
   const isMobile = useIsMobile();
-  
+
   const studioSettings = {
     open: 9,
     close: 23,
@@ -27,7 +27,7 @@ export const Studio = ({ name }: { name: string }) => {
     minimumWait: 1,
   };
 
-  const getStatus = (hoursFromNow: number, bookings: Booking[]) => {
+  const getStatus = (hoursFromNow: number, bookings: Booking[]): Status => {
     if (hoursFromNow < studioSettings.minimumWait) {
       if (bookings.filter((booking) => booking.type === "spaceHolder").length)
         return "ongoing";
@@ -72,7 +72,7 @@ export const Studio = ({ name }: { name: string }) => {
     const sessions: {
       hour: number;
       day: number;
-      status: string;
+      status: Status;
       dateString: string;
       dateLabel: string;
       spaceHolder?: Booking;
@@ -98,7 +98,7 @@ export const Studio = ({ name }: { name: string }) => {
           dateString: newDate.toISOString(),
           hour: newDate.hour(),
           day: newDate.day(),
-          dateLabel: formatDate(newDate, !isMobile),
+          dateLabel: formatDate(newDate, true),
           status,
           spaceHolder: ["happening", "ongoing"].includes(status)
             ? _bookings.find((b) => b.type === "spaceHolder")
@@ -137,14 +137,19 @@ export const Studio = ({ name }: { name: string }) => {
         <div>Loading..</div>
       ) : (
         <div className="flex justify-between items-center text-sm">
-          <table>
+          <table style={{ maxWidth: "100%" }}>
             <thead>
               <tr style={{ textAlign: "left" }}>
-                <th style={cellStyle}>Status</th>
+                <th style={cellStyle}></th>
                 <th style={cellStyle}>Date/time</th>
-                <th style={cellStyle}>Space holder</th>
                 <th style={cellStyle}>
-                  Dancers (max {studioSettings.maxDancers})
+                  Space-
+                  {isMobile && <br />}
+                  holder
+                </th>
+                <th style={cellStyle}>
+                  Dancers
+                  {isMobile && <br />} (max {studioSettings.maxDancers})
                 </th>
               </tr>
             </thead>
@@ -152,7 +157,14 @@ export const Studio = ({ name }: { name: string }) => {
               {getSessions().map((session, index) => {
                 return (
                   <tr key={index}>
-                    <td style={cellStyle}>{session.status}</td>
+                    <td
+                      style={{
+                        ...cellStyle,
+                        backgroundColor: getBackgroundColor(session.status),
+                      }}
+                    >
+                      {" "}
+                    </td>
                     <td style={cellStyle}>{session.dateLabel}</td>
                     <td style={cellStyle}>
                       {session.spaceHolder ? (
@@ -172,7 +184,7 @@ export const Studio = ({ name }: { name: string }) => {
                       ) : (
                         <button
                           key={session.dateString}
-                          style={{ color: "blue" }}
+                          style={{ color: "blue", textDecoration: "underline" }}
                           onClick={() =>
                             handleClick(session.dateString, "spaceHolder")
                           }
@@ -182,27 +194,30 @@ export const Studio = ({ name }: { name: string }) => {
                       )}
                     </td>
                     <td style={cellStyle}>
+                      {!["disabled", "ongoing"].includes(session.status) &&
+                        session.dancers.length < studioSettings.maxDancers && (
+                          <button
+                            onClick={() =>
+                              handleClick(session.dateString, "dancer")
+                            }
+                            style={{
+                              color: "blue",
+                              marginRight: "10px",
+                              textDecoration: "underline",
+                            }}
+                          >
+                            Join
+                          </button>
+                        )}
                       {session.dancers.map((booking) => (
                         <button
-                          style={{ marginRight: "10px", color: "blue" }}
+                          style={{ marginRight: "5px", color: "blue" }}
                           key={booking.id}
                           onClick={() => setSelectedBooking(booking)}
                         >
                           {booking.name}
                         </button>
                       ))}
-                      {!["disabled", "ongoing"].includes(session.status) && (
-                        <button
-                          onClick={() =>
-                            handleClick(session.dateString, "dancer")
-                          }
-                          style={{
-                            color: "blue",
-                          }}
-                        >
-                          Join
-                        </button>
-                      )}
                     </td>
                   </tr>
                 );

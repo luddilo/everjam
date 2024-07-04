@@ -5,3 +5,5 @@ export type Booking = {
   type: "spaceHolder" | "dancer";
   code: number;
 };
+
+export type Status = "open" | "proposed" | "happening" | "ongoing" | "disabled";
