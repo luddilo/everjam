@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { buttonStyle } from "../style";
 
 export const Modal = ({
@@ -9,6 +10,19 @@ export const Modal = ({
   children: any;
   onClose: () => void;
 }) => {
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, []);
+
   return (
     <div
       style={{

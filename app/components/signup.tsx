@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Booking } from "../types/booking";
 import { Modal } from "./modal";
 import { buttonStyle } from "../style";
-import { formatDate } from "../lib/formatting";
+import { formatDate, normalCase } from "../lib/formatting";
 import moment from "moment";
 
 export const SignupModal = ({
@@ -22,7 +22,7 @@ export const SignupModal = ({
   return (
     <Modal
       onClose={onClose}
-      title={`Join as ${type} at ${formatDate(moment(date))}`}
+      title={`Join as ${normalCase(type)} at ${formatDate(moment(date))}`}
     >
       <div style={{ display: "flex" }}>
         <label style={{ flexGrow: 1 }}>Name</label>
@@ -34,7 +34,7 @@ export const SignupModal = ({
       </div>
       {type == "spaceHolder" && (
         <div style={{ display: "flex" }}>
-          <label style={{ flexGrow: 1 }}>Space holder password</label>
+          <label style={{ flexGrow: 1 }}>Secret</label>
           <input
             style={{ flexGrow: 1 }}
             type="text"
@@ -48,7 +48,7 @@ export const SignupModal = ({
         <input
           style={{ flexGrow: 1 }}
           type="number"
-          placeholder="code"
+          placeholder="code to remove later"
           onChange={(e) => setCode(e.target.value)}
         />
       </div>

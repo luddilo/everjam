@@ -5,7 +5,7 @@ import { useBookings } from "../hooks/bookings";
 import { Booking } from "../types/booking";
 import { EditModal } from "./edit";
 import { SignupModal } from "./signup";
-import { formatDate } from "../lib/formatting";
+import { capitalise, formatDate } from "../lib/formatting";
 
 const generalSettings = {
   planningHorizonHours: 72,
@@ -26,7 +26,11 @@ export const Studio = ({ name }: { name: string }) => {
   };
 
   const getStatus = (hoursFromNow: number, bookings: Booking[]) => {
-    if (hoursFromNow < studioSettings.minimumWait) return "disabled";
+    if (hoursFromNow < studioSettings.minimumWait) {
+      if (bookings.filter((booking) => booking.type === "spaceHolder").length)
+        return "ongoing";
+      return "disabled";
+    }
     if (bookings.filter((booking) => booking.type === "spaceHolder").length) {
       return "happening";
     }
@@ -85,16 +89,18 @@ export const Studio = ({ name }: { name: string }) => {
       ) {
         const _bookings = getBookings(newDate);
         const status = getStatus(hoursFromNow, _bookings);
+        if (status == "disabled") {
+          continue;
+        }
         sessions.push({
           dateString: newDate.toISOString(),
           hour: newDate.hour(),
           day: newDate.day(),
           dateLabel: formatDate(newDate),
           status,
-          spaceHolder:
-            status == "happening"
-              ? _bookings.find((b) => b.type === "spaceHolder")
-              : undefined,
+          spaceHolder: ["happening", "ongoing"].includes(status)
+            ? _bookings.find((b) => b.type === "spaceHolder")
+            : undefined,
           dancers: _bookings.filter((b) => b.type === "dancer"),
         });
       }
@@ -122,7 +128,9 @@ export const Studio = ({ name }: { name: string }) => {
           onClose={() => setSelectedBooking(undefined)}
         />
       )}
-      <h1 className="title font-semibold text-2xl tracking-tighter">{name}</h1>
+      <h1 className="title font-semibold text-2xl tracking-tighter">
+        {capitalise(name)}
+      </h1>
       {loading ? (
         <div>Loading..</div>
       ) : (
@@ -147,7 +155,11 @@ export const Studio = ({ name }: { name: string }) => {
                     <td style={cellStyle}>
                       {session.spaceHolder ? (
                         <button
-                          style={{ color: "blue" }}
+                          style={{
+                            color:
+                              session.status !== "ongoing" ? "blue" : "black",
+                          }}
+                          disabled={session.status == "ongoing"}
                           onClick={() => {
                             setSelectedBooking(session.spaceHolder);
                             setSelectedSlot(undefined);
@@ -163,7 +175,7 @@ export const Studio = ({ name }: { name: string }) => {
                             handleClick(session.dateString, "spaceHolder")
                           }
                         >
-                          Join as spaceholder
+                          Join
                         </button>
                       )}
                     </td>
@@ -177,15 +189,16 @@ export const Studio = ({ name }: { name: string }) => {
                           {booking.name}
                         </button>
                       ))}
-                      {session.status !== "disabled" && (
+                      {!["disabled", "ongoing"].includes(session.status) && (
                         <button
                           onClick={() =>
                             handleClick(session.dateString, "dancer")
                           }
-                          disabled={session.status === "disabled"}
-                          style={{ color: "blue" }}
+                          style={{
+                            color: "blue",
+                          }}
                         >
-                          Join as dancer
+                          Join
                         </button>
                       )}
                     </td>
