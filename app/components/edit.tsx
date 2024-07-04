@@ -35,7 +35,7 @@ export const EditModal = ({
       </div>
       <div>
         <button
-          style={buttonStyle}
+          className="bg-gray-500 hover:bg-gray-700 text-white font-bold my-2 py-1 px-2 rounded-full"
           disabled={`${code}`.trim() !== inputtedCode?.trim()}
           onClick={onRemove}
         >

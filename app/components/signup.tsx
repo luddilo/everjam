@@ -48,14 +48,14 @@ export const SignupModal = ({
         <input
           style={inputStyle}
           type="number"
-          placeholder="code to remove booking later"
+          placeholder="for removing booking later"
           onChange={(e) => setCode(e.target.value)}
         />
       </div>
       <div>
         <div>
           <button
-            style={buttonStyle}
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded-full"
             disabled={
               !name?.length ||
               !code?.length ||

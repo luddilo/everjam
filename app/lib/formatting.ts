@@ -18,7 +18,7 @@ export const normalCase = (s: string) => {
 export const getBackgroundColor = (status: Status) => {
   switch (status) {
     case "open":
-      return "white";
+      return "inherit";
     case "proposed":
       return "yellow";
     case "happening":
