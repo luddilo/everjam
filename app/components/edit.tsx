@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Modal } from "./modal";
 import { buttonStyle } from "../style";
-import { formatDate } from "../lib/formatting";
+import { formatDate, inputStyle, labelStyle } from "../lib/formatting";
 import moment from "moment";
 
 export const EditModal = ({
@@ -25,9 +25,9 @@ export const EditModal = ({
       title={`Remove ${name} at ${formatDate(moment(date), true)}`}
     >
       <div>
-        <label style={{ flexGrow: 1 }}>Code</label>
+        <label style={labelStyle}>Code</label>
         <input
-          style={{ flexGrow: 1 }}
+          style={inputStyle}
           type="number"
           placeholder="code"
           onChange={(e) => setInputtedCode(e.target.value)}

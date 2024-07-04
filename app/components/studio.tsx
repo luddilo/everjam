@@ -9,7 +9,7 @@ import { capitalise, formatDate, getBackgroundColor } from "../lib/formatting";
 import { useIsMobile } from "../hooks/useMediaQuery";
 
 const generalSettings = {
-  planningHorizonHours: 96,
+  planningHorizonDays: 4,
 };
 
 export const Studio = ({ name }: { name: string }) => {
@@ -69,6 +69,10 @@ export const Studio = ({ name }: { name: string }) => {
   const getSessions = () => {
     const now = moment();
     now.set({ minute: 0 });
+    const end = now
+      .clone()
+      .add({ days: generalSettings.planningHorizonDays })
+      .set({ hour: studioSettings.close });
     const sessions: {
       hour: number;
       day: number;
@@ -79,18 +83,19 @@ export const Studio = ({ name }: { name: string }) => {
       dancers: Booking[];
     }[] = [];
 
-    for (
-      let hoursFromNow = 0;
-      hoursFromNow < generalSettings.planningHorizonHours;
-      hoursFromNow++
-    ) {
-      const newDate = now.clone().add({ hours: hoursFromNow });
+    let newDate = now.clone();
+    console.log(end.diff(newDate.clone(), "hours"));
+
+    while (end.diff(newDate.clone(), "hours") > 0) {
+      newDate = newDate.add({ hours: 1 });
+
       if (
         newDate.hour() >= studioSettings.open &&
         newDate.hour() < studioSettings.close
       ) {
         const _bookings = getBookings(newDate);
-        const status = getStatus(hoursFromNow, _bookings);
+        const status = getStatus(newDate.diff(now, "hours"), _bookings);
+
         if (status == "disabled") {
           continue;
         }

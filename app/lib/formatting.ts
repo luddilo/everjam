@@ -29,3 +29,7 @@ export const getBackgroundColor = (status: Status) => {
       return "green";
   }
 };
+
+export const labelStyle = { flexGrow: 1, marginRight: "15px" };
+
+export const inputStyle = { flexGrow: 1, padding: "0px 5px", width: "250px" };

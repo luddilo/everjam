@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Booking } from "../types/types";
 import { Modal } from "./modal";
 import { buttonStyle } from "../style";
-import { formatDate, normalCase } from "../lib/formatting";
+import { formatDate, inputStyle, labelStyle, normalCase } from "../lib/formatting";
 import moment from "moment";
 
 export const SignupModal = ({
@@ -19,37 +19,36 @@ export const SignupModal = ({
   const [name, setName] = useState<string>();
   const [spaceHolderCode, setSpaceHolderCode] = useState<string>();
   const [code, setCode] = useState<string>();
-  
+
   return (
     <Modal
       onClose={onClose}
       title={`Join as ${normalCase(type)} at ${formatDate(moment(date), true)}`}
     >
       <div style={{ display: "flex" }}>
-        <label style={{ flexGrow: 1 }}>Name</label>
+        <label style={labelStyle}>Name</label>
         <input
-          style={{ flexGrow: 1 }}
+          style={inputStyle}
           placeholder="name"
           onChange={(e) => setName(e.target.value)}
         />
       </div>
       {type == "spaceHolder" && (
         <div style={{ display: "flex" }}>
-          <label style={{ flexGrow: 1 }}>Secret</label>
+          <label style={labelStyle}>Secret</label>
           <input
-            style={{ flexGrow: 1 }}
-            type="text"
+            style={inputStyle}
             placeholder="super secret"
             onChange={(e) => setSpaceHolderCode(e.target.value)}
           />
         </div>
       )}
       <div style={{ display: "flex" }}>
-        <label style={{ flexGrow: 1 }}>Code</label>
+        <label style={labelStyle}>Code</label>
         <input
-          style={{ flexGrow: 1 }}
+          style={inputStyle}
           type="number"
-          placeholder="code to remove later"
+          placeholder="code to remove booking later"
           onChange={(e) => setCode(e.target.value)}
         />
       </div>
