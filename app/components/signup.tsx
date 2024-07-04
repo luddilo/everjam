@@ -1,9 +1,8 @@
+import moment from "moment";
 import { useState } from "react";
+import { formatDate, inputStyle, labelStyle, normalCase } from "../lib/formatting";
 import { Booking } from "../types/types";
 import { Modal } from "./modal";
-import { buttonStyle } from "../style";
-import { formatDate, inputStyle, labelStyle, normalCase } from "../lib/formatting";
-import moment from "moment";
 
 export const SignupModal = ({
   date,
