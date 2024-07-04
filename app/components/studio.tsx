@@ -28,7 +28,7 @@ export const Studio = ({ name }: { name: string }) => {
   const getStatus = (hoursFromNow: number, bookings: Booking[]) => {
     if (hoursFromNow < studioSettings.minimumWait) return "disabled";
     if (bookings.filter((booking) => booking.type === "spaceHolder").length) {
-      return "active";
+      return "happening";
     }
     if (bookings.length) {
       return "proposed";
@@ -92,7 +92,7 @@ export const Studio = ({ name }: { name: string }) => {
           dateLabel: formatDate(newDate),
           status,
           spaceHolder:
-            status == "active"
+            status == "happening"
               ? _bookings.find((b) => b.type === "spaceHolder")
               : undefined,
           dancers: _bookings.filter((b) => b.type === "dancer"),
@@ -177,14 +177,17 @@ export const Studio = ({ name }: { name: string }) => {
                           {booking.name}
                         </button>
                       ))}
-                      <button
-                        onClick={() =>
-                          handleClick(session.dateString, "dancer")
-                        }
-                        style={{ color: "blue" }}
-                      >
-                        Join as dancer
-                      </button>
+                      {session.status !== "disabled" && (
+                        <button
+                          onClick={() =>
+                            handleClick(session.dateString, "dancer")
+                          }
+                          disabled={session.status === "disabled"}
+                          style={{ color: "blue" }}
+                        >
+                          Join as dancer
+                        </button>
+                      )}
                     </td>
                   </tr>
                 );
