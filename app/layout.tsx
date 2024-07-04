@@ -7,15 +7,15 @@ import { baseUrl } from './sitemap'
 export const metadata: any = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Ludvig',
-    template: 'Ludvig is %s',
+    default: 'Everjam',
+    template: 'Everjam in %s',
   },
   description: 'Some of the things I do.',
   openGraph: {
-    title: 'Ludvig',
-    description: 'Code, contact impro, cat',
+    title: 'Everjam',
+    description: 'An always open Contact improvisation studio',
     url: baseUrl,
-    siteName: 'Ludvig',
+    siteName: 'Everjam',
     locale: 'en_US',
     type: 'website',
   },

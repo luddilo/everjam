@@ -189,7 +189,7 @@ export const Studio = ({ name }: { name: string }) => {
                       ) : (
                         <button
                           key={session.dateString}
-                          style={{ color: "blue", textDecoration: "underline" }}
+                          className="bg-green-500 hover:bg-green-700 text-white font-bold py-0 px-1 rounded-full"
                           onClick={() =>
                             handleClick(session.dateString, "spaceHolder")
                           }
@@ -205,10 +205,9 @@ export const Studio = ({ name }: { name: string }) => {
                             onClick={() =>
                               handleClick(session.dateString, "dancer")
                             }
+                            className="bg-green-500 hover:bg-green-700 text-white font-bold py-0 px-1 rounded-full"
                             style={{
-                              color: "blue",
                               marginRight: "10px",
-                              textDecoration: "underline",
                             }}
                           >
                             Join
