@@ -8,7 +8,7 @@ export default function Page() {
         The always-open contact improvisation studio
       </p>
       <p className="mb-4">
-        First Everjam studio: <Link href={"/studios/barcelona"}>Barcelona</Link>
+        First Everjam studio: <Link href={"/barcelona"}>Barcelona</Link>
       </p>
     </section>
   );

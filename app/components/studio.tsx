@@ -5,6 +5,7 @@ import { useBookings } from "../hooks/bookings";
 import { Booking } from "../types/booking";
 import { EditModal } from "./edit";
 import { SignupModal } from "./signup";
+import { formatDate } from "../lib/formatting";
 
 const generalSettings = {
   planningHorizonHours: 72,
@@ -88,7 +89,7 @@ export const Studio = ({ name }: { name: string }) => {
           dateString: newDate.toISOString(),
           hour: newDate.hour(),
           day: newDate.day(),
-          dateLabel: newDate.format("dddd HH:mm"),
+          dateLabel: formatDate(newDate),
           status,
           spaceHolder:
             status == "active"

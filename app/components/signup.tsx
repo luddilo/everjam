@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Booking } from "../types/booking";
 import { Modal } from "./modal";
+import { buttonStyle } from "../style";
+import { formatDate } from "../lib/formatting";
+import moment from "moment";
 
 export const SignupModal = ({
   date,
@@ -17,43 +20,59 @@ export const SignupModal = ({
   const [spaceHolderCode, setSpaceHolderCode] = useState<string>();
   const [code, setCode] = useState<string>();
   return (
-    <Modal onClose={onClose} title={`Join as ${type}`}>
-      <label>Name</label>
-      <input placeholder="name" onChange={(e) => setName(e.target.value)} />
+    <Modal
+      onClose={onClose}
+      title={`Join as ${type} at ${formatDate(moment(date))}`}
+    >
+      <div style={{ display: "flex" }}>
+        <label style={{ flexGrow: 1 }}>Name</label>
+        <input
+          style={{ flexGrow: 1 }}
+          placeholder="name"
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
       {type == "spaceHolder" && (
-        <>
-          <label>Space holder password</label>
+        <div style={{ display: "flex" }}>
+          <label style={{ flexGrow: 1 }}>Space holder password</label>
           <input
+            style={{ flexGrow: 1 }}
             type="text"
             placeholder="super secret"
             onChange={(e) => setSpaceHolderCode(e.target.value)}
           />
-        </>
+        </div>
       )}
-      <label>Code</label>
-      <input
-        type="number"
-        placeholder="code"
-        onChange={(e) => setCode(e.target.value)}
-      />
+      <div style={{ display: "flex" }}>
+        <label style={{ flexGrow: 1 }}>Code</label>
+        <input
+          style={{ flexGrow: 1 }}
+          type="number"
+          placeholder="code"
+          onChange={(e) => setCode(e.target.value)}
+        />
+      </div>
       <div>
-        <button
-          disabled={
-            !name?.length ||
-            !code?.length ||
-            (type == "spaceHolder" && spaceHolderCode !== "always")
-          }
-          onClick={() =>
-            onSubmit({
-              date,
-              type,
-              name: name as string,
-              code: parseInt(code!),
-            })
-          }
-        >
-          Add
-        </button>
+        <div>
+          <button
+            style={buttonStyle}
+            disabled={
+              !name?.length ||
+              !code?.length ||
+              (type == "spaceHolder" && spaceHolderCode !== "always")
+            }
+            onClick={() =>
+              onSubmit({
+                date,
+                type,
+                name: name as string,
+                code: parseInt(code!),
+              })
+            }
+          >
+            Add
+          </button>
+        </div>
       </div>
     </Modal>
   );

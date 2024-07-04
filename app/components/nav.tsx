@@ -4,7 +4,7 @@ const routes = {
   "/": {
     name: "home",
   },
-  "/studios/barcelona": {
+  "/barcelona": {
     name: "barcelona",
   },
   "/writing/about": {

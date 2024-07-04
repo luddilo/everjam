@@ -1,3 +1,5 @@
+import { buttonStyle } from "../style";
+
 export const Modal = ({
   title,
   children,
@@ -9,12 +11,19 @@ export const Modal = ({
 }) => {
   return (
     <div
-      style={{ position: "absolute", backgroundColor: "gray", padding: "20px" }}
+      style={{
+        position: "absolute",
+        border: "1px black solid",
+        backgroundColor: "white",
+        padding: "20px",
+      }}
     >
       <h3>{title}</h3>
       <div>{children}</div>
 
-      <button onClick={onClose}>Close</button>
+      <button style={buttonStyle} onClick={onClose}>
+        Close
+      </button>
     </div>
   );
 };
