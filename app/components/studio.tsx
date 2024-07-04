@@ -6,9 +6,10 @@ import { Booking } from "../types/booking";
 import { EditModal } from "./edit";
 import { SignupModal } from "./signup";
 import { capitalise, formatDate } from "../lib/formatting";
+import { useIsMobile } from "../hooks/useMediaQuery";
 
 const generalSettings = {
-  planningHorizonHours: 72,
+  planningHorizonHours: 96,
 };
 
 export const Studio = ({ name }: { name: string }) => {
@@ -17,7 +18,8 @@ export const Studio = ({ name }: { name: string }) => {
   const [selectedSlot, setSelectedSlot] =
     useState<Pick<Booking, "date" | "type">>();
   const [selectedBooking, setSelectedBooking] = useState<Booking>();
-
+  const isMobile = useIsMobile();
+  
   const studioSettings = {
     open: 9,
     close: 23,
@@ -96,7 +98,7 @@ export const Studio = ({ name }: { name: string }) => {
           dateString: newDate.toISOString(),
           hour: newDate.hour(),
           day: newDate.day(),
-          dateLabel: formatDate(newDate),
+          dateLabel: formatDate(newDate, !isMobile),
           status,
           spaceHolder: ["happening", "ongoing"].includes(status)
             ? _bookings.find((b) => b.type === "spaceHolder")

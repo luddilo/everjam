@@ -22,7 +22,7 @@ export const EditModal = ({
   return (
     <Modal
       onClose={onClose}
-      title={`Remove ${name} at ${formatDate(moment(date))}`}
+      title={`Remove ${name} at ${formatDate(moment(date), true)}`}
     >
       <div>
         <label style={{ flexGrow: 1 }}>Code</label>

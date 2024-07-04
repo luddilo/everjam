@@ -19,10 +19,11 @@ export const SignupModal = ({
   const [name, setName] = useState<string>();
   const [spaceHolderCode, setSpaceHolderCode] = useState<string>();
   const [code, setCode] = useState<string>();
+  
   return (
     <Modal
       onClose={onClose}
-      title={`Join as ${normalCase(type)} at ${formatDate(moment(date))}`}
+      title={`Join as ${normalCase(type)} at ${formatDate(moment(date), true)}`}
     >
       <div style={{ display: "flex" }}>
         <label style={{ flexGrow: 1 }}>Name</label>

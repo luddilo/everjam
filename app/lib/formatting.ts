@@ -1,5 +1,6 @@
-export const formatDate = (moment: moment.Moment) => {
-  return moment.format("dddd HH:mm");
+export const formatDate = (moment: moment.Moment, long = false) => {
+  if (long) return moment.format("dddd HH:mm");
+  return moment.format("dd HH:mm");
 };
 
 // Capitalise string
