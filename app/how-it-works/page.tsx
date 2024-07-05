@@ -3,7 +3,7 @@ import { getBlogPosts } from "app/docs/utils";
 import { notFound } from "next/navigation";
 
 export default function Page({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === "about");
+  let post = getBlogPosts().find((post) => post.slug === "how-it-works");
 
   if (!post) {
     notFound();

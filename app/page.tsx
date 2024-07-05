@@ -9,8 +9,12 @@ export default function Page() {
       </p>
       <p className="mb-4">
         What? Why? How? Read about the project{" "}
-        <Link href={"/about"}>
-          <span style={{ textDecoration: "underline" }}>here</span>
+        <Link href={"/vision"}>
+          <span style={{ textDecoration: "underline" }}>vision</span>
+        </Link>{" "}
+        or{" "}
+        <Link href={"/how-it-works"}>
+          <span style={{ textDecoration: "underline" }}>how-it-works</span>
         </Link>
       </p>
       <p className="mb-4">

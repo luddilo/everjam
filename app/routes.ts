@@ -2,8 +2,11 @@ export const routes = {
   "/": {
     name: "home",
   },
-  "/about": {
-    name: "about",
+  "/vision": {
+    name: "vision",
+  },
+  "/how-it-works": {
+    name: "how-it-works",
   },
   "/jam": {
     name: "jam",
