@@ -23,20 +23,35 @@ const contacts = [
     icon: icons.InstagramIcon,
     link: "https://instagram.com/luddilo",
   },
+  {
+    icon: icons.FacebookIcon,
+    link: "https://facebook.com/luddilo",
+  },
 ];
 
 export default function Footer() {
   return (
-    <footer className="mb-16 mt-16">
+    <footer className="mb-4 mt-4">
       <section>
-        {/* <div className="flex flex-wrap items-center text-gray-900 dark:text-white">
-          Reach me:
+        <div className="flex flex-wrap items-center text-gray-900 dark:text-white">
+          ---
+          <br />
+          Contact:
+          <br />
+          <br />
+          <Link
+            style={{ fontSize: "20px" }}
+            className="mx-1"
+            href={"mailto:ludvig.linse@gmail.com"}
+          >
+            <strong>@</strong>
+          </Link>
           {contacts.map((contact) => (
             <Link className="mx-1" href={contact.link}>
               {contact.icon()}
             </Link>
           ))}
-        </div> */}
+        </div>
       </section>
     </footer>
   );

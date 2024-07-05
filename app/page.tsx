@@ -5,7 +5,7 @@ export default function Page() {
     <section>
       <h1 className="mb-8 text-2xl font-semibold tracking-tighter">Everjam</h1>
       <p className="mb-4">
-        An always-open, residential contact improvisation studio in Barcelona
+        An always-open, residential, contact improvisation studio in Barcelona
       </p>
       <p className="mb-4">
         What? Why? How? Read about the project{" "}

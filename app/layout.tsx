@@ -7,6 +7,7 @@ import backgroundMobile from "./assets/bg-mobile-2.jpg";
 import { Navbar } from "./components/nav";
 import "./global.css";
 import { useIsMobile } from "./hooks/useMediaQuery";
+import Footer from "./components/footer";
 
 // export const metadata: any = {
 //   metadataBase: new URL(baseUrl),
@@ -57,10 +58,10 @@ export default function RootLayout({
       className="dark"
     >
       <body className="antialiased max-w-full mx-auto w-auto mt-8 mx-auto text-black bg-white/80 dark:text-white dark:bg-black/80">
-        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 lg:px-4 pb-4">
+        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 lg:px-4">
           <Navbar />
           {children}
-          {/* <Footer /> */}
+          <Footer />
           <Analytics />
           <SpeedInsights />
         </main>
