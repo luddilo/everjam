@@ -4,17 +4,25 @@ export default function Page() {
   return (
     <section>
       <h1 className="mb-8 text-2xl font-semibold tracking-tighter">Everjam</h1>
-      <p className="mb-4">The always-open contact improvisation studio</p>
       <p className="mb-4">
-        Que? Read about Everjam{" "}
-        <Link href={"/writing/about"}>
+        An always-open, residential contact improvisation studio in Barcelona
+      </p>
+      <p className="mb-4">
+        What? Why? How? Read about the project{" "}
+        <Link href={"/about"}>
           <span style={{ textDecoration: "underline" }}>here</span>
         </Link>
       </p>
       <p className="mb-4">
-        First prototype of an Everjam studio:{" "}
-        <Link href={"/barcelona"}>
-          <span style={{ textDecoration: "underline" }}>Barcelona</span>
+        To start jamming, go to{" "}
+        <Link href={"/jam"}>
+          <span style={{ textDecoration: "underline" }}>jams</span>
+        </Link>
+      </p>
+      <p className="mb-4">
+        To become a resident go to{" "}
+        <Link href={"/residency"}>
+          <span style={{ textDecoration: "underline" }}>residency</span>
         </Link>
       </p>
     </section>

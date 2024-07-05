@@ -23,22 +23,20 @@ const contacts = [
     icon: icons.InstagramIcon,
     link: "https://instagram.com/luddilo",
   },
-  {
-    icon: icons.GithubIcon,
-    link: "https://github.com/luddilo",
-  },
 ];
 
 export default function Footer() {
   return (
     <footer className="mb-16 mt-16">
       <section>
-        <div className="flex flex-wrap items-center text-gray-900 dark:text-white">
+        {/* <div className="flex flex-wrap items-center text-gray-900 dark:text-white">
           Reach me:
           {contacts.map((contact) => (
-            <Link className="mx-1" href={contact.link}>{contact.icon()}</Link>
+            <Link className="mx-1" href={contact.link}>
+              {contact.icon()}
+            </Link>
           ))}
-        </div>
+        </div> */}
       </section>
     </footer>
   );

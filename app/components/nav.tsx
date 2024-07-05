@@ -1,16 +1,5 @@
 import Link from "next/link";
-
-const routes = {
-  "/": {
-    name: "home",
-  },
-  "/barcelona": {
-    name: "barcelona",
-  },
-  "/writing/about": {
-    name: "about",
-  },
-};
+import { routes } from "../routes";
 
 export function Navbar() {
   return (

@@ -7,6 +7,7 @@ import { EditModal } from "./edit";
 import { SignupModal } from "./signup";
 import { capitalise, formatDate, getBackgroundColor } from "../lib/formatting";
 import { useIsMobile } from "../hooks/useMediaQuery";
+import Link from "next/link";
 
 const generalSettings = {
   planningHorizonDays: 4,
@@ -135,9 +136,22 @@ export const Studio = ({ name }: { name: string }) => {
           onClose={() => setSelectedBooking(undefined)}
         />
       )}
-      <h1 className="title font-semibold text-2xl tracking-tighter">
-        {capitalise(name)}
-      </h1>
+      <h1 className="title font-semibold text-2xl tracking-tighter">Jam</h1>
+      <p className="mb-4">
+        The first Everjam studio is located in{" "}
+        <Link
+          style={{ textDecoration: "underline" }}
+          href={"https://maps.app.goo.gl/XxWhJLaZKKoEwEFb7"}
+        >
+          Gracia, Barcelona
+        </Link>
+      </p>
+      <p className="mb-4">
+        Read how it works in the{" "}
+        <Link style={{ textDecoration: "underline" }} href={"/about"}>
+          about page
+        </Link>
+      </p>
       {loading ? (
         <div>Loading..</div>
       ) : (

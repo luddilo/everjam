@@ -55,15 +55,15 @@ export default function RootLayout({
         backgroundImage: mobile
           ? `url(${backgroundMobile.src})`
           : `url(${backgroundDesktop.src})`,
-        backgroundSize: "cover",
+        backgroundSize: "stretch",
       }}
       className="dark"
     >
-      <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto text-black bg-white/50 dark:text-white dark:bg-black/50">
-        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 lg:px-4">
+      <body className="antialiased max-w-full mt-8 lg:mx-auto text-black bg-white/80 dark:text-white dark:bg-black/80">
+        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 lg:px-4 pb-4">
           <Navbar />
           {children}
-          <Footer />
+          {/* <Footer /> */}
           <Analytics />
           <SpeedInsights />
         </main>

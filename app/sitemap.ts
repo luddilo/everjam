@@ -1,4 +1,4 @@
-import { getBlogPosts } from "app/writing/utils";
+import { getBlogPosts } from "app/docs/utils";
 
 export const baseUrl = "https://ludvig.is";
 

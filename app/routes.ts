@@ -2,16 +2,13 @@ export const routes = {
   "/": {
     name: "home",
   },
-    "/writing": {
-      name: "writing",
-    },
-  "/blueprint": {
-    name: "blueprint",
+  "/about": {
+    name: "about",
   },
-  "/coding": {
-    name: "coding",
+  "/jam": {
+    name: "jam",
   },
-  "/dj": {
-    name: "dj",
+  "/residency": {
+    name: "residency",
   },
 };
