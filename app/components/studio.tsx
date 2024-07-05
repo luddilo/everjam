@@ -1,13 +1,13 @@
 "use client";
 import moment from "moment";
+import Link from "next/link";
 import { useState } from "react";
 import { useBookings } from "../hooks/bookings";
+import { useIsMobile } from "../hooks/useMediaQuery";
+import { formatDate, getBackgroundColor } from "../lib/formatting";
 import { Booking, Status } from "../types/types";
 import { EditModal } from "./edit";
 import { SignupModal } from "./signup";
-import { capitalise, formatDate, getBackgroundColor } from "../lib/formatting";
-import { useIsMobile } from "../hooks/useMediaQuery";
-import Link from "next/link";
 
 const generalSettings = {
   planningHorizonDays: 4,
@@ -144,7 +144,8 @@ export const Studio = ({ name }: { name: string }) => {
           href={"https://maps.app.goo.gl/XxWhJLaZKKoEwEFb7"}
         >
           Gracia, Barcelona
-        </Link>
+        </Link>{" "}
+        and fits 6 dancers.
       </p>
       <p className="mb-4">
         Read how it works in the{" "}
@@ -220,7 +221,7 @@ export const Studio = ({ name }: { name: string }) => {
                               marginRight: "10px",
                             }}
                           >
-                            Join
+                            {session.dancers.length ? "Join" : "Suggest"}
                           </button>
                         )}
                       {session.dancers.map((booking) => (

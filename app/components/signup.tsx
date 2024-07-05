@@ -22,7 +22,7 @@ export const SignupModal = ({
   return (
     <Modal
       onClose={onClose}
-      title={`Join as ${normalCase(type)} at ${formatDate(moment(date), true)}`}
+      title={`Sign up as ${normalCase(type)} at ${formatDate(moment(date), true)}`}
     >
       <div style={{ display: "flex" }}>
         <label style={labelStyle}>Name</label>
@@ -47,7 +47,7 @@ export const SignupModal = ({
         <input
           style={inputStyle}
           type="number"
-          placeholder="for removing booking later"
+          placeholder="for removing signup later"
           onChange={(e) => setCode(e.target.value)}
         />
       </div>
@@ -69,7 +69,7 @@ export const SignupModal = ({
               })
             }
           >
-            Add
+            Confirm
           </button>
         </div>
       </div>

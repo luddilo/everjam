@@ -9,7 +9,7 @@ export const routes = {
     name: "how-it-works",
   },
   "/jam": {
-    name: "jam",
+    name: "JAM",
   },
   "/residency": {
     name: "residency",
