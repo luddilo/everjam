@@ -153,6 +153,13 @@ export const Studio = ({ name }: { name: string }) => {
           about page
         </Link>
       </p>
+      <p className="mb-4" style={{ fontStyle: "italic" }}>
+        NOTE: The Barcelona studio will open in <strong>September 2024</strong>.
+        Feel free to play around with this page in the meantime. To follow the
+        project you have my instagram and facebook in the footer. The studio is
+        open for residencies during July & August while I am travelling, reach
+        out!
+      </p>
       {loading ? (
         <div>Loading..</div>
       ) : (

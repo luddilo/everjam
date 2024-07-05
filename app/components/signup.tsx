@@ -1,6 +1,11 @@
 import moment from "moment";
 import { useState } from "react";
-import { formatDate, inputStyle, labelStyle, normalCase } from "../lib/formatting";
+import {
+  formatDate,
+  inputStyle,
+  labelStyle,
+  normalCase,
+} from "../lib/formatting";
 import { Booking } from "../types/types";
 import { Modal } from "./modal";
 
@@ -22,7 +27,10 @@ export const SignupModal = ({
   return (
     <Modal
       onClose={onClose}
-      title={`Sign up as ${normalCase(type)} at ${formatDate(moment(date), true)}`}
+      title={`Sign up as ${normalCase(type)} at ${formatDate(
+        moment(date),
+        true
+      )}`}
     >
       <div style={{ display: "flex" }}>
         <label style={labelStyle}>Name</label>
@@ -37,7 +45,7 @@ export const SignupModal = ({
           <label style={labelStyle}>Secret</label>
           <input
             style={inputStyle}
-            placeholder="super secret"
+            placeholder="write 'always' here"
             onChange={(e) => setSpaceHolderCode(e.target.value)}
           />
         </div>
