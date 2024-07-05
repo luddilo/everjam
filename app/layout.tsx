@@ -1,13 +1,11 @@
 "use client";
 
-import "./global.css";
-import { Navbar } from "./components/nav";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Footer from "./components/footer";
-import { baseUrl } from "./sitemap";
 import backgroundDesktop from "./assets/bg-desktop.jpg";
 import backgroundMobile from "./assets/bg-mobile-2.jpg";
+import { Navbar } from "./components/nav";
+import "./global.css";
 import { useIsMobile } from "./hooks/useMediaQuery";
 
 // export const metadata: any = {
@@ -46,7 +44,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const mobile = useIsMobile();
-  console.log(mobile);
 
   return (
     <html
