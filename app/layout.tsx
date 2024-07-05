@@ -7,7 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import { baseUrl } from "./sitemap";
 import backgroundDesktop from "./assets/bg-desktop.jpg";
-import backgroundMobile from "./assets/bg-mobile.jpg";
+import backgroundMobile from "./assets/bg-mobile-2.jpg";
 import { useIsMobile } from "./hooks/useMediaQuery";
 
 // export const metadata: any = {
@@ -55,11 +55,11 @@ export default function RootLayout({
         backgroundImage: mobile
           ? `url(${backgroundMobile.src})`
           : `url(${backgroundDesktop.src})`,
-        backgroundSize: "stretch",
+        backgroundSize: "cover",
       }}
       className="dark"
     >
-      <body className="antialiased max-w-full mt-8 lg:mx-auto text-black bg-white/80 dark:text-white dark:bg-black/80">
+      <body className="antialiased max-w-full mx-auto w-auto mt-8 mx-auto text-black bg-white/80 dark:text-white dark:bg-black/80">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 lg:px-4 pb-4">
           <Navbar />
           {children}
